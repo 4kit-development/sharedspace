@@ -1,0 +1,33 @@
+@import '~sweetalert/dist/sweetalert.css';
+@import '~swiper/dist/css/swiper.css';
+
+@tailwind base;
+@tailwind components;
+
+// Custom imports go here
+@import "components/body";
+@import "components/buttons";
+@import "components/cards";
+@import "components/checkbox";
+@import "components/navbar";
+@import "components/modals";
+
+@import "elements/files";
+@import "elements/forms";
+@import "elements/icons";
+@import "elements/text";
+@import "elements/transitions";
+@import "elements/utilities";
+
+@tailwind utilities;
+
+@supports (position: sticky) {
+    .sticky\?lg\:h-\(screen-16\) {
+        height: calc(100vh - 4rem);
+    }
+}
+
+// Vue Cloak
+[v-cloak] {
+    display: none;
+}

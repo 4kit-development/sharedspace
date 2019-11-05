@@ -1,0 +1,49 @@
+version: '2'
+services:
+  proxy:
+    image: jwilder/nginx-proxy:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock
+      - ./docker/certs:/etc/nginx/certs
+    restart: unless-stopped
+  app:
+    extends:
+      file: docker-compose.base.yml
+      service: app
+    environment:
+      APP_ENV: ${APP_ENV}
+      VIRTUAL_HOST: dev.sharedspace.co.nz
+    expose:
+      - 80
+      - 443
+  node:
+    extends:
+      file: docker-compose.base.yml
+      service: node
+  mysql:
+    extends:
+        file: docker-compose.base.yml
+        service: mysql
+    ports:
+     - "${DB_PORT}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASS}"
+      MYSQL_DATABASE: "${DB_NAME}"
+      MYSQL_USER: "${DB_USER}"
+      MYSQL_PASSWORD: "${DB_PASS}"
+  redis:
+    extends:
+      file: docker-compose.base.yml
+      service: redis
+networks:
+  default:
+    external:
+      name: proxy
+volumes:
+  mysqldata:
+    driver: "local"
+  redisdata:
+    driver: "local"

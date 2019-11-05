@@ -1,0 +1,23 @@
+#modal-add-listing {
+    display: none;
+}
+
+#modal-login {
+    display: none;
+}
+
+#modal-notifications {
+    display: none;
+}
+
+#modal-support {
+    display: none;
+}
+
+#modal-session-expired {
+    display: none;
+}
+
+.modal-heading {
+    @apply mb-6;
+}

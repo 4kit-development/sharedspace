@@ -1,0 +1,29 @@
+// Buttons
+// -------------------------------------------------------------------------- */
+.btn {
+    @apply inline-block text-xs font-black py-2 px-4 border rounded-sm no-underline uppercase w-48 text-center;
+}
+
+.btn-gray-800 {
+    @apply bg-transparent text-gray-800 border-gray-800;
+}
+
+.btn-gray-800:hover {
+    @apply bg-gray-800 text-white;
+}
+
+.btn-teal-400 {
+    @apply inline-block bg-teal-400 text-white border-0;
+}
+
+.btn-white {
+    @apply bg-transparent text-white border-white rounded-none;
+}
+
+.btn-no-border {
+    @apply bg-transparent text-gray-800 border-0;
+}
+
+.btn-yellow-600 {
+    @apply bg-yellow-600 text-gray-800 border-yellow-600;
+}

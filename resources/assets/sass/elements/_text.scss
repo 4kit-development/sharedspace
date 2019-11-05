@@ -1,0 +1,59 @@
+// Headers
+// -------------------------------------------------------------------------- */
+
+//h1, h2, h3, h4, h5, h6 {
+//  color: ;
+//}
+
+h1{
+    @apply font-light;
+}
+
+h2 {
+    @apply font-light;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    text-align: center;
+    font-weight: 500;
+}
+
+
+// Font Colors
+// -------------------------------------------------------------------------- */
+a {
+  @apply text-gray-800 no-underline;
+}
+
+
+// Line either side of header
+// -------------------------------------------------------------------------- */
+
+.fancy {
+    overflow: hidden;
+    text-align: center;
+}
+.fancy span {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    @apply text-gray-800;
+}
+.fancy span:before,
+.fancy span:after {
+    @apply bg-gray-600;
+    content: "";
+    display: inline-block;
+    height: 1px;
+    position: relative;
+    vertical-align: middle;
+    width: 50%;
+}
+.fancy span:before {
+    right: 0.5em;
+    margin-left: -50%;
+}
+.fancy span:after {
+    left: 0.5em;
+    margin-right: -50%;
+}

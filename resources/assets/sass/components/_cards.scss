@@ -1,0 +1,18 @@
+// Create listing Cards
+// -------------------------------------------------------------------------- */
+.premium-band {
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background: linear-gradient(-90deg, #F9BEC3 4%, #FBC9A8 23%, #FCE683 49%, #C0E0A2 75%, #A0E1EA 100%);
+}
+
+.basic-band {
+    background: #E5E5E5;
+}
+
+// Similar listing Cards
+// -------------------------------------------------------------------------- */
+.similar-listings-gradient {
+    background-image: linear-gradient(to top, rgba(0, 0, 0, .8), rgba(255, 255, 255, 0));
+}
+

@@ -1,0 +1,44 @@
+// Page Footer Componenet
+// -------------------------------------------------------------------------- */
+
+.page-footer{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	background-color: $white;
+	z-index: 100;
+
+	&--not-fixed{
+		position: initial;
+		box-shadow: none;
+	}
+
+	&__inner{
+		min-height: 64px;
+		padding-top: 14px;
+		padding-bottom: 14px;
+		/*display: flex;
+		align-items: center;
+		justify-content: flex-end;*/
+
+		&__error{
+			text-align: center;
+
+			@media (min-width: 992px) {
+				text-align: right;
+    			margin-top: 18px;
+			}
+		}
+
+		.btn:nth-last-child(1){
+			margin-bottom: 0;
+		}
+	}
+}
+
+body.no-bg-img-header {
+	.page-footer {
+		box-shadow: none;
+	}
+}

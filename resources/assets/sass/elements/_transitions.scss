@@ -1,0 +1,13 @@
+.fadeIn {
+    background: #fff;
+    transition: background .5s ease-in-out;
+    -moz-transition: background .5s ease-in-out;
+    -webkit-transition: background .5s ease-in-out;
+}
+
+.fadeOut {
+    background: transparent;
+    transition: background .5s ease-in-out;
+    -moz-transition: background .5s ease-in-out;
+    -webkit-transition: background .5s ease-in-out;
+}

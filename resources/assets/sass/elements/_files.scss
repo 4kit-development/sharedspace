@@ -1,0 +1,19 @@
+input[type="file"] {
+    opacity: 0; /* make transparent */
+    z-index: -1; /* move under anything else */
+    width: 1px; /* don't let it take up space */
+}
+
+.video-container {
+    padding-top: 56.25%;position: relative;
+    width: 100%;
+    height: 0;
+
+    iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
