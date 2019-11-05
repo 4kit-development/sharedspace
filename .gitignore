@@ -3,7 +3,7 @@ public/css/*
 public/js/*
 public/storage
 storage/*.key
-vendor
+/vendor/
 .idea
 docker/certs
 yarn-error.log
