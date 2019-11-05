@@ -10,7 +10,7 @@
     <nav class="navbar navbar-light navbar-expand-md navbar-spark">
         <div class="container" v-if="user">
             <!-- Branding Image -->
-            @include('spark::nav.brand')
+            @include('spark::navigation.brand')
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -19,7 +19,7 @@
 
             <div id="navbarSupportedContent" class="collapse navbar-collapse">
                 <ul class="navbar-nav mr-auto">
-                    @includeIf('spark::nav.user-left')
+                    @includeIf('spark::navigation.user-left')
                 </ul>
 
                 <a @click="showNotifications" class="notification-pill mx-auto mb-3 mb-md-0 mr-md-0 ml-md-auto">
@@ -64,11 +64,11 @@
 
                             <!-- Developer -->
                             @if (Spark::developer(Auth::user()->email))
-                                @include('spark::nav.developer')
+                                @include('spark::navigation.developer')
                             @endif
 
                             <!-- Subscription Reminders -->
-                            @include('spark::nav.subscriptions')
+                            @include('spark::navigation.subscriptions')
 
                             <!-- Settings -->
                             <h6 class="dropdown-header">{{__('Settings')}}</h6>
@@ -82,12 +82,12 @@
 
                             @if (Spark::usesTeams() && (Spark::createsAdditionalTeams() || Spark::showsTeamSwitcher()))
                                 <!-- Team Settings -->
-                                @include('spark::nav.teams')
+                                @include('spark::navigation.teams')
                             @endif
 
                             @if (Spark::hasSupportAddress())
                                 <!-- Support -->
-                                @include('spark::nav.support')
+                                @include('spark::navigation.support')
                             @endif
 
                             <!-- Logout -->

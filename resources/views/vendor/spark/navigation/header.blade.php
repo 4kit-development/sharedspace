@@ -14,7 +14,7 @@
             </div>
         </div>
         <div :class="isOpen ? 'block' : 'hidden'" class="sm:p-0 px-2 py-2 sm:flex items-center">
-            @include('spark::nav.menu')
+            @include('spark::navigation.menu')
         </div>
     </header>
 </navbar>

@@ -1,4 +1,4 @@
 <header class="h-20">
-    @include('spark::nav.condensed')
+    @include('spark::navigation.condensed')
 </header>
 

@@ -2,7 +2,7 @@
 <nav class="navbar navbar-light navbar-expand-md navbar-spark">
     <div class="container" v-if="user">
         <!-- Branding Image -->
-        @include('spark::nav.brand')
+        @include('spark::navigation.brand')
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -12,7 +12,7 @@
         <div id="navbarSupportedContent" class="collapse navbar-collapse">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
-                @includeIf('spark::nav.user-left')
+                @includeIf('spark::navigation.user-left')
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -40,11 +40,11 @@
 
                         <!-- Developer -->
                         @if (Spark::developer(Auth::user()->email))
-                            @include('spark::nav.developer')
+                            @include('spark::navigation.developer')
                         @endif
 
                         <!-- Subscription Reminders -->
-                        @include('spark::nav.subscriptions')
+                        @include('spark::navigation.subscriptions')
 
                         <!-- Settings -->
                         <h6 class="dropdown-header">{{__('Settings')}}</h6>
@@ -56,7 +56,7 @@
 
                         @if (Spark::usesTeams() && (Spark::createsAdditionalTeams() || Spark::showsTeamSwitcher()))
                             <!-- Team Settings -->
-                            @include('spark::nav.blade.teams')
+                            @include('spark::navigation.blade.teams')
                         @endif
 
                         <div class="dropdown-divider"></div>

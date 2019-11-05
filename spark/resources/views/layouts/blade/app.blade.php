@@ -29,9 +29,9 @@
     <div>
         <!-- Navigation -->
         @if (Auth::check())
-            @include('spark::nav.blade.user')
+            @include('spark::navigation.blade.user')
         @else
-            @include('spark::nav.guest')
+            @include('spark::navigation.guest')
         @endif
 
         <!-- Main Content -->

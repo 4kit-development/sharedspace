@@ -25,7 +25,7 @@ node('master') {
             }
 
             stage('deploy') {
-                sh 'ssh -i ~/.ssh/id_sd root@134.209.105.143 sudo /opt/deploy'
+                sh 'ssh -i ~/.ssh/id_ root@134.209.105.143 sudo /opt/deploy'
             }
         }
     } catch(error) {
