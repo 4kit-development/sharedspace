@@ -12,9 +12,6 @@ services:
     extends:
       file: docker-compose.base.yml
       service: redis
-networks:
-  sdnet:
-    driver: "bridge"
 volumes:
   mysqldata:
     driver: "local"
