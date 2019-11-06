@@ -11,6 +11,9 @@ node('master') {
             // Get composer dependencies
             sh "./develop composer install"
 
+            // Get composer dependencies
+            sh "./develop npm install"
+
            // Create .env file for testing
             sh '/var/lib/jenkins/.venv/bin/aws s3 cp s3://sharedspace-secrets/env.ci .env'
             sh './develop art key:generate'
