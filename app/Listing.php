@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 use Laravel\Scout\Searchable;
 
 /**
@@ -19,7 +20,7 @@ class Listing extends Model
 
     protected $table = 'listings';
 
-    protected $appends = ['formatted_area', 'formatted_capacity', 'formatted_cost', 'page_views'];
+    protected $appends = ['days_remaining', 'formatted_area', 'formatted_capacity', 'formatted_cost', 'formatted_expired_at', 'formatted_listed_at', 'page_views', 'progress'];
 
     /**
      * Get all of the addons that belong to the listing.
@@ -247,6 +248,53 @@ class Listing extends Model
             return '$' . $this->min_cost . ' - ' . $this->max_cost  . ' ' . $this->category->metric->cost_specification;
         }
     	return '$' . $this->max_cost . ' ' . $this->category->metric->cost_specification;
+    }
+
+    /**
+     * Get and format end date
+     */
+    protected function getFormattedExpiredAtAttribute()
+    {
+        return Carbon::parse($this->expired_at)->format('d M Y');
+    }
+
+    /**
+     * Get and format start date
+     */
+    protected function getFormattedListedAtAttribute()
+    {
+        return Carbon::parse($this->listed_at)->format('d M Y');
+    }
+
+    /**
+     * Get remaining percentage of the days left till listing expires
+     */
+    protected function getProgressAttribute()
+    {
+        $startdate = Carbon::parse($this->listed_at);
+        $enddate = Carbon::parse($this->expired_at);
+        $now = Carbon::now();
+
+        if($now >= $enddate) {
+            return 100;
+        }
+
+        return number_format(($startdate->diffInDays($now) / $startdate->diffInDays($enddate)) * 100, 0);
+    }
+
+    /**
+     * Get remaining percentage of the days left till listing expires
+     */
+    protected function getDaysRemainingAttribute()
+    {
+        $enddate = Carbon::parse($this->expired_at);
+        $now = Carbon::now();
+
+        if($now >= $enddate) {
+            return 0;
+        }
+
+        return $now->diffInDays($enddate) . ' days remaining';
     }
 
     public function calculateTransactionalTotals() 

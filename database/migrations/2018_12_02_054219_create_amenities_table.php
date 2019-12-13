@@ -17,7 +17,7 @@ class CreateAmenitiesTable extends Migration
             $table->increments('id');
             $table->integer('category_id');
             $table->string('title');
-            $table->string('icon');
+            $table->text('icon');
             $table->boolean('status')->default(1);
             $table->timestamps();
         });

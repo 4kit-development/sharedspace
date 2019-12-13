@@ -124,18 +124,16 @@ export default {
     },
 
     mounted() {
-        this.$nextTick(() => {
-            this.autocomplete = new google.maps.places.Autocomplete(
-                (this.$refs.autocomplete),
-                {types: ['geocode']}
-            );
+        this.autocomplete = new google.maps.places.Autocomplete(
+            (this.$refs.autocomplete),
+            {types: ['geocode']}
+        );
 
 
-            this.autocomplete.addListener('place_changed', () => {
-                let address = this.autocomplete.getPlace();
+        this.autocomplete.addListener('place_changed', () => {
+            let address = this.autocomplete.getPlace();
 
-                this.loadDataForLocation(address);
-            });
+            this.loadDataForLocation(address);
         });
     },
 

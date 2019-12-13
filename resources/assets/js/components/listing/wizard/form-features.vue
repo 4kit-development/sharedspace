@@ -4,23 +4,23 @@
             <div class="w-full px-3 mb-6 md:mb-0">
                 <div class="form-group">
                     <div class="flex flex-wrap">
-                        <div class="md:w-1/3 pr-4">
+                        <div class="w-full lg:w-1/3 pr-12">
                             <label class="form-control-label">
                                 {{listing.category.metric.area_label}}
                             </label>
-                            <div class="flex flex-wrap pr-12">
-                                <div class="w-1/2 pr-4 pb-2">
+                            <div class="flex flex-wrap">
+                                <div class="w-2/3 pr-4 pb-2">
                                     <div class="relative">
                                         <select class="form-control focus:bg-white" v-model="area">
                                             <option value="Fixed" selected>Fixed</option>
                                             <option value="Range">Range</option>
                                         </select>
-                                        <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-gray-700">
+                                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                                             <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="w-1/2 pb-2" v-if="area === 'Fixed'">
+                                <div class="w-1/3 pb-2" v-if="area === 'Fixed'">
                                     <input type="number" class="form-control focus:bg-white" v-model="form.maxArea" :placeholder="'22 ' + listing.category.metric.area_specification" />
                                 </div>
                                 <div class="w-full pb-2" v-if="area === 'Range'">
@@ -39,26 +39,26 @@
                                 {{ form.errors.get('maxArea') }}
                             </p>
                         </div>
-                        <div class="md:w-1/3 pr-4 pr-12">
+                        <div class="w-full lg:w-1/3 pr-12">
                             <label class="form-control-label">
                                 {{listing.category.metric.capacity_label}}
                             </label>
                             <div class="flex flex-wrap">
-                                <div class="w-1/2 pr-4 pb-2">
+                                <div class="w-2/3 pr-4 pb-2">
                                     <div class="relative">
                                         <select class="form-control focus:bg-white" v-model="capacity">
                                             <option value="Fixed" selected>Fixed</option>
                                             <option value="Range">Range</option>
                                         </select>
-                                        <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-gray-700">
+                                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                                             <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="w-1/2 pb-2 pr-8" v-if="capacity === 'Fixed'">
+                                <div class="w-1/3 pb-2" v-if="capacity === 'Fixed'">
                                     <input type="number" class="form-control focus:bg-white" v-model="form.maxCapacity" :placeholder="'3 ' + listing.category.metric.capacity_specification" />
                                 </div>
-                                <div class="w-full pb-2 pr-8" v-if="capacity === 'Range'">
+                                <div class="w-full pb-2" v-if="capacity === 'Range'">
                                     <div class="flex">
                                         <div class="w-1/2 pr-2">
                                             <input type="number" class="form-control focus:bg-white" v-model="form.minCapacity" :placeholder="'2 ' + listing.category.metric.capacity_specification" />
@@ -74,26 +74,26 @@
                                 {{ form.errors.get('maxCapacity') }}
                             </p>
                         </div>
-                        <div class="md:w-1/3 pr-12">
+                        <div class="w-full lg:w-1/3 pr-12">
                             <label class="form-control-label">
                                 {{listing.category.metric.cost_label}}
                             </label>
                             <div class="flex flex-wrap">
-                                <div class="w-1/2 pr-4 pb-2">
+                                <div class="w-2/3 pb-2 pr-4">
                                     <div class="relative">
                                         <select class="form-control focus:bg-white" v-model="cost">
                                             <option value="Fixed" selected>Fixed</option>
                                             <option value="Range">Range</option>
                                         </select>
-                                        <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-gray-700">
+                                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                                             <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="w-1/2 pb-2 pr-8" v-if="cost === 'Fixed'">
+                                <div class="w-1/3 pb-2" v-if="cost === 'Fixed'">
                                     <input type="number" class="form-control focus:bg-white" v-model="form.maxCost" :placeholder="'$300 ' + listing.category.metric.cost_specification" />
                                 </div>
-                                <div class="w-full pb-2 pr-8" v-if="cost === 'Range'">
+                                <div class="w-full pb-2" v-if="cost === 'Range'">
                                     <div class="flex">
                                         <div class="w-1/2 pr-2">
                                             <input type="number" class="form-control focus:bg-white" v-model="form.minCost" :placeholder="'$200 ' +  listing.category.metric.cost_specification" />
@@ -108,7 +108,7 @@
                                     {{ form.errors.get('maxCost') }}
                                 </p>
                             </div>
-                            <div class="jusitfy-start md:justify-end flex pr-8 mb-4">
+                            <div class="jusitfy-start md:justify-end flex mb-4">
                                 <label class="text-gray-700 pb-2 relative form-checkbox pl-8">
                                         <span class="text-sm">
                                             Includes outgoings
@@ -126,7 +126,7 @@
                     </label>
                     <div class="flex flex-wrap md:items-center mb-6">
                         <label class="md:w-1/4 w-1/2 px-3 mb-2 block text-gray-800 pb-2 relative form-checkbox pl-8" v-for="(amenity, index) in amenities">
-                            <i :class="amenity.icon"></i>
+                            <span v-html="amenity.icon"></span>
                             <span class="text-sm">
                                 {{ amenity.title }}
                             </span>

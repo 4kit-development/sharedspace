@@ -1,6 +1,6 @@
 <!-- Customer Support -->
 <transition name="fade">
-    <div class="fixed pin z-50 overflow-auto bg-smoke-light flex hidden" id="modal-support" tabindex="-1" role="dialog">
+    <div class="fixed pin z-50 overflow-auto bg-smoke-500 flex hidden" id="modal-support" tabindex="-1" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body p-b-none">

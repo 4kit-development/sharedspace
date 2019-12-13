@@ -1,46 +1,39 @@
 <template>
     <form class="w-full">
         <div class="flex flex-wrap mb-6 justify-between">
-            <div class="w-full md:w-1/2 form-group mb-6">
+            <div class="w-full md:w-2/3 form-group mb-6">
                 <div class="mb-10">
                     <h4 class="mb-4">Image uploads</h4>
                     <p class="text-sm">Upload up to 8 photos. Drag photos to put them in the order user will see.</p>
                 </div>
-                <sortable-list class="flex flex-wrap w-full p-0 relative" v-model="form.images" @updateImageOrder="processImageOrder">
+                <sortable-list class="flex flex-wrap w-full p-0 relative overflow-hidden" v-model="form.images" @updateImageOrder="processImageOrder">
                     <div slot-scope="{ items }">
-                        <div class="uppercase bg-yellow-600 text-xs font-extrabold absolute px-6 py-1 pin-t mt-2 -ml-2 z-40">Cover Photo</div>
-                        <sortable-item v-for="(image, index) in items" :key="image.id">
-                            <div class="w-1/2 flex mb-2">
-                                <div class="relative" :class="index % 2 === 0 ? 'mr-1' : 'ml-1' ">
-                                    <img :src="image.url" class="rounded w-full h-full"/>
-                                    <span class="absolute text-white pin-t pin-r w-full h-full cursor-move bg-smoke-lighter rounded">
-                                        <i @click="removeImage(index)" class="fa fa-times pin-r pin-t absolute pr-2 pt-2 cursor-pointer"></i>
-                                    </span>
+                        <div class="uppercase bg-yellow-600 text-xs font-extrabold absolute px-6 py-1 top-0 mt-2 -ml-2 z-40">Cover Photo</div>
+                        <sortable-item v-for="(image, index) in items" :key="image.id" class="mb-3 px-3 w-1/2 overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4">
+                            <template v-if="image.empty">
+                                <div class="not-draggable">
+                                    <div class="relative h-full">
+                                        <label class="p-1/4 sm:p-1/4 md:p-1/5 lg:p-1/5 w-full h-full rounded flex flex-wrap items-center justify-center cursor-pointer bg-gray-200">
+                                            <i class="flex items-center justify-center fa fa-plus mb-2 text-gray-600 border-dashed border border-gray-600 px-1 py-1"></i>
+                                            <span class="w-full flex items-center justify-center text-xs text-gray-600 text-center">
+                                                Add photo
+                                            </span>
+                                            <input ref="photo" type="file" class="hidden" :name="'photo[' + index + ']'" @change="upload(index)" :disabled="form.busy">
+                                        </label>
+                                    </div>
                                 </div>
-                            </div>
+                            </template>
+                            <template v-else>
+                                <div class="draggable">
+                                    <div class="relative">
+                                        <img :src="image.url" class="rounded"/>
+                                        <span class="absolute text-white top-0 right-0 w-full h-full cursor-move bg-smoke-200 rounded">
+                                            <i @click="removeImage(index)" class="fa fa-times right-0 top-0 absolute pr-2 pt-2 cursor-pointer"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </template>
                         </sortable-item>
-                        <div class="w-1/2 flex mb-2" v-for="(emptyImage, index) in emptyImages" :key="emptyImages.id" :class="(index + items.length) % 2 === 0 ? 'pr-1' : 'pl-1' ">
-                            <label class="py-8 xs:py-12 sm:py-12 lg:py-16 md:py-6 w-full rounded bg-gray-400 flex items-center justify-center flex-col cursor-pointer">
-                                <template v-if="emptyImage.loading">
-                                    <i class="fa fa-btn fa-spinner fa-spin"></i>
-                                    <span class="text-xs text-gray-600 text-center">
-                                        Uploading <br />Image
-                                    </span>
-                                </template>
-                                <template v-else>
-                                    <i class="fa fa-plus mb-2 text-gray-600 border-dashed border border-gray-600 px-1 py-1"></i>
-                                    <span class="text-xs text-gray-600">
-                                        <template v-if="checkFilledImages(index)">
-                                            Add Cover Photo
-                                        </template>
-                                        <template v-else>
-                                            Add Photo
-                                        </template>
-                                    </span>
-                                    <input ref="photo" type="file" :name="'photo[' + index + ']'" @change="upload(index)" :disabled="form.busy">
-                                </template>
-                            </label>
-                        </div>
                     </div>
                 </sortable-list>
             </div>
@@ -55,7 +48,7 @@
                     </div>
                 </template>
                 <template v-else>
-                    <div class="py-8 xs:py-12 sm:py-12 lg:py-16 md:py-6 w-full rounded bg-gray-400 flex items-center justify-center flex-col mb-4">
+                    <div class="p-1/4 w-full rounded bg-gray-400 flex items-center justify-center flex-col mb-4">
                         <i class="fa fa-plus mb-2 text-gray-600 border-dashed border border-gray-600 px-1 py-1"></i>
                         <span class="text-xs text-gray-600 text-center">
                             Add Video url below <br />to save the video.
@@ -93,7 +86,7 @@
 
 import SortableList from '../../sorting/SortableList'
 import SortableItem from '../../sorting/SortableItem'
-    
+
 export default {
 
     components: {
@@ -121,7 +114,6 @@ export default {
      */
     data() {
         return {
-            emptyImages: this.generateEmptyItems(),
             form: new SparkForm({
                 currentStep: 4,
                 id: this.listing.id,
@@ -130,6 +122,9 @@ export default {
             }),
             loading: false,
         }
+    },
+    mounted() {
+        this.generateEmptyItems()
     },
     methods: {
         /**
@@ -144,17 +139,15 @@ export default {
         },
 
         generateEmptyItems() {
-            let difference = 8 - this.images.length;
-            let empty = [];
+            let difference = 9 - this.form.images.length;
 
             for(let i = 0; i < difference; i++) {
-                empty.push({
-                    id: i,
-                    loading: false
+                this.form.images.push({
+                    id: i + 99999999,
+                    empty: true,
+                    loading: false,
                 });
             }
-
-            return empty;
         },
 
         parseVideo() {
@@ -175,8 +168,9 @@ export default {
         removeImage(index) {
             axios.post(`/listing/${this.listing.id}/images/remove`, this.form.images[index]);
             this.form.images.splice(index, 1);
-            this.emptyImages.push({
-                id: this.emptyImages.length,
+            this.form.images.push({
+                id: this.form.images.length + 99999999,
+                empty: true,
                 loading: false
             });
         },
@@ -204,10 +198,10 @@ export default {
             });
 
             if(!uploadedImage) {
-                return 
+                return
             }
 
-            this.emptyImages[index].loading = true;
+            this.form.images[index].loading = true;
 
             // We need to gather a fresh FormData instance with the profile photo appended to
             // the data so we can POST it up to the server. This will allow us to do async
@@ -215,13 +209,13 @@ export default {
             axios.post(`/listing/${this.listing.id}/images/upload`, this.gatherFormData(uploadedImage))
                 .then(
                     (response) => {
-                        this.form.images.push(response.data);
-                        this.emptyImages[index].loading = false;
-                        this.emptyImages.splice(index, 1);
+                        this.form.images.splice(index, 1);
+                        this.form.images.splice(index, 0, response.data);
+                        this.form.images[index].loading = false;
                     },
                     (error) => {
                         this.form.setErrors(error.response.data.errors);
-                        this.emptyImages[index].loading = false;
+                        this.form.images[index].loading = false;
                     }
                 );
         },

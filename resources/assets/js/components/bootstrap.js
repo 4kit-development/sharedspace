@@ -16,6 +16,9 @@ require('./header');
 // Navigation
 require('./navbar/navbar');
 
+// Modal
+require('./modal/modal');
+
 // Listing Creation Wizard
 require('./listing/wizard/form-features.vue');
 require('./listing/wizard/form-general.vue');

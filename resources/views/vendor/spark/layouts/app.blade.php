@@ -28,7 +28,7 @@
         )); ?>;
     </script>
 </head>
-<body class="bg-white text-gray-800 font-sans">
+<body class="bg-white text-gray-800 font-sans leading-none">
     <div id="spark-app" class="antialiased home" v-cloak>
         <!-- Navigation -->
         @include('spark::navigation.header')
@@ -50,7 +50,7 @@
 
 
     </div>
-    @stack('beforeScripts')
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGF5uXihz50ftS7EF63uKPoznLBhP5PQo&libraries=places"></script>
     <script src="{{ mix('js/app.js') }}"></script>
     <script src="/js/sweetalert.min.js"></script>
     {{--<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ce8d8a5edb48510"></script>--}}

@@ -1,5 +1,5 @@
 <script>
-import { Sortable } from '@shopify/draggable';
+import {Sortable, Plugins} from '@shopify/draggable';
 
 function move(items, oldIndex, newIndex) {
     const itemRemovedArray = [
@@ -25,7 +25,7 @@ export default {
     },
     provide() {
         return {
-            itemClass: this.itemClass,
+            itemClass: this.itemClass
         }
     },
     render() {
@@ -35,10 +35,11 @@ export default {
     },
     mounted() {
         const sortable = new Sortable(this.$el, {
-            draggable: `.${this.itemClass}`,
+            draggable: `.${this.itemClass}.draggable`,
             mirror: {
                 constrainDimensions: true,
-            }
+            },
+            plugins: [Plugins.ResizeMirror]
         })
         .on('sortable:stop', ({ oldIndex, newIndex }) => {
             this.$emit('input', move(this.value, oldIndex, newIndex))

@@ -6,7 +6,7 @@
         :loading-notifications="loadingNotifications" inline-template>
 
         <div>
-            <div class="fixed pin z-50 overflow-auto bg-smoke-light flex hidden" id="modal-notifications" tabindex="-1" role="dialog">
+            <div class="fixed pin z-50 overflow-auto bg-smoke-500 flex hidden" id="modal-notifications" tabindex="-1" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header text-center">

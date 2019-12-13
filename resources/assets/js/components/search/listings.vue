@@ -93,7 +93,7 @@
                                         <!--<svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>-->
                                     <!--</div>-->
                                 <!--</div>-->
-                                <!--<div v-show="showCost" class="absolute pin-r w-full mt-2 z-50">-->
+                                <!--<div v-show="showCost" class="absolute right-0 w-full mt-2 z-50">-->
                                     <!--<div class="bg-white shadow rounded border px-8 py-4 w-64">-->
                                         <!--<div class="text-xl">-->
                                             <!--${{ cost.min }} nzd - ${{ cost.max }} nzd-->
@@ -146,7 +146,7 @@
                                         <!--</svg>-->
                                     <!--</div>-->
                                 <!--</div>-->
-                                <!--<div v-show="showArea" class="absolute pin-r w-full mt-2 z-50">-->
+                                <!--<div v-show="showArea" class="absolute right-0 w-full mt-2 z-50">-->
                                     <!--<div class="bg-white shadow rounded border px-4 py-4 w-64">-->
                                         <!--<div class="text-xl">-->
                                             <!--{{ area.min }} m2 - {{ area.max }} m2-->

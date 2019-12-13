@@ -1,6 +1,6 @@
 <!-- Session Expired Modal -->
 <transition name="fade">
-    <div class="fixed pin z-50 overflow-auto bg-smoke-light flex hidden" id="modal-session-expired" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="fixed pin z-50 overflow-auto bg-smoke-500 flex hidden" id="modal-session-expired" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

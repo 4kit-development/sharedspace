@@ -14,9 +14,7 @@
         </div>
         <div>
             <keep-alive>
-                <transition name="fade">
-                    <component ref="currentStep" :is="steps[currentStepNumber - 1].step" :listing="listing" :addons="addons" :amenities="amenities" :images="images" :tags="tags" :data="form" @update="processStep" @back="back"></component>
-                </transition>
+                <component ref="currentStep" :is="steps[currentStepNumber - 1].step" :listing="listing" :addons="addons" :amenities="amenities" :images="images" :plans="plans" :tags="tags" :data="form" @update="processStep" @back="back"></component>
             </keep-alive>
         </div>
         <!--<pre>{{ form }}</pre>-->
@@ -56,6 +54,10 @@ export default {
         },
         images: {
             type: Array,
+            required: true
+        },
+        plans: {
+            type: Object,
             required: true
         },
         tags: {

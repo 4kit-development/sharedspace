@@ -1,4 +1,4 @@
-<nav class="fixed w-full bg-gray-100 pin-t z-50 h-20 px-4">
+<nav class="fixed w-full bg-gray-100 top-0 z-50 h-20 px-4">
     <div class="flex container mx-auto items-center h-full">
         <a href="/">
             <img src="/img/sharedspace-condensed-logo.png" alt="sharedspace logo" class="w-10 sm:w-10" />

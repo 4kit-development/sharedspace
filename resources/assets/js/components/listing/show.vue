@@ -14,7 +14,7 @@
                     <div class="flex flex-wrap mb-6 mt-6">
                         <div class="w-full md:w-2/3 px-3 mb-6 md:pr-16">
                             <div class="information">
-                                <div class="uppercase text-xxs text-gray-400 my-4 mt-0 tracking-wide">
+                                <div class="uppercase text-xs text-gray-400 my-4 mt-0 tracking-wide">
                                     {{ listing.category.title }} /
                                     <template v-for="(tag, index) in listing.tags">
                                         {{ tag.title }}
@@ -35,20 +35,20 @@
                                 </div>
                             </div>
                             <div class="amenities">
-                                <div class="uppercase text-xxs text-gray-400 mt-8 mb-4 tracking-wide">
+                                <div class="uppercase text-xs text-gray-400 mt-8 mb-4 tracking-wide">
                                     Amenities & Services
                                 </div>
                                 <div class="px:0 flex">
                                     <div class="md:w-1/3 w-1/2 pr-3 mb-2 block text-gray-800 pb-2 relative form-checkbox" v-for="(amenity, index) in listing.amenities">
-                                        <i :class="amenity.icon" class="text-lg"></i>
-                                        <span class="text-sm leading-loose">
+                                        <span v-html="amenity.icon"></span>
+                                        <span class="text-sm">
                                             {{ amenity.title }}
                                         </span>
                                     </div>
                                 </div>
                             </div>
                             <div class="video" v-if="listing.video">
-                                <div class="uppercase text-xxs text-gray-400 mt-8 mb-4 tracking-wide">
+                                <div class="uppercase text-xs text-gray-400 mt-8 mb-4 tracking-wide">
                                     Video
                                 </div>
                                 <div class="px:0 flex">
@@ -58,7 +58,7 @@
                                 </div>
                             </div>
                             <div class="location">
-                                <div class="uppercase text-xxs text-gray-400 mt-8 mb-4 tracking-wide">
+                                <div class="uppercase text-xs text-gray-400 mt-8 mb-4 tracking-wide">
                                     Location
                                 </div>
                                 <div id="address-map-container" style="width:100%;height:200px; ">

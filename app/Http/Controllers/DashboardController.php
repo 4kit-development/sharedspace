@@ -25,8 +25,8 @@ class DashboardController extends Controller
      */
     public function show()
     {
-        $listings = Listing::userListings(Auth::user())->get();
+        $listings = Listing::userListings(Auth::user())->with('plan.type')->get();
 
-        return view('dashboard', compact('listings'));
+        return view('spark::account.dashboard', compact('listings'));
     }
 }

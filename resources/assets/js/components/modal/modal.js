@@ -1,31 +1,29 @@
-Vue.component('navbar', {
+Vue.component('modal', {
     props: ['user'],
 
     data() {
         return {
-            isOpen: false,
-            showTransition: false
+
         }
     },
 
     methods: {
-        handleScroll (event) {
-            window.pageYOffset > 40 ? this.showTransition=true : this.showTransition=false;
+        showRegisterEmailModal() {
+            this.closeModal();
+            $('#modal-register-email').modal('show');
         },
-        showListingModal() {
-            $('#modal-add-listing').modal('show');
+        showRegisterModal() {
+            this.closeModal();
+            $('#modal-register').modal('show');
         },
-
-        hideListingModal() {
-            $('#modal-add-listing').modal('hide');
-        },
-
         showLoginModal() {
+            this.closeModal();
             $('#modal-login').modal('show');
         },
-
-        hideLoginModal() {
+        closeModal() {
             $('#modal-login').modal('hide');
+            $('#modal-register').modal('hide');
+            $('#modal-register-email').modal('hide');
         },
     },
 

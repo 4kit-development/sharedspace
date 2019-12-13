@@ -5,9 +5,9 @@
                 <h4 class="text-center mb-4">Listing Plan</h4>
                 <p class="text-center">Please select the listing plan for your office space.</p>
             </div>
-            <div v-for="(plan, i) in plans" class="w-full md:w-2/5 px-3 mb-6 md:mb-0" :class="i % 2 === 0 ? ' md:mr-auto' : ' md:ml-auto'">
+            <div v-for="(plan, i) in planOptions" class="w-full md:w-2/5 px-3 mb-6 md:mb-0" :class="i % 2 === 0 ? ' md:mr-auto' : ' md:ml-auto'">
                 <div class="form-group">
-                    <div class="max-w-xs rounded overflow-hidden shadow-lg mx-auto"" :class="i % 2 === 0 ? ' md:ml-0' : ' md:mr-0'" >
+                    <div class="max-w-xs rounded overflow-hidden shadow-lg mx-auto" :class="i % 2 === 0 ? ' md:ml-0' : ' md:mr-0'" >
                         <div class="h-6" :class="plan.title === 'Premium' ? 'premium-band' : 'basic-band'"></div>
                         <div class="px-6 pt-8 pb-2">
                             <div class="font-bold text-md text-center">{{ plan.title }}</div>
@@ -17,7 +17,7 @@
                                 <select class="form-control focus:bg-white" v-model="plan.optionSelected" @change="updatePricingPlan(plan, $event)">
                                     <option v-for="(option, index) in plan.options" :value="index">{{ option.period }} days</option>
                                 </select>
-                                <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-gray-700">
+                                <div class="pointer-events-none absolute pin-y right-0 flex items-center px-2 text-gray-700">
                                     <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
                                 </div>
                             </div>
@@ -58,7 +58,7 @@
                 <span v-if="form.busy">
                     <i class="fa fa-btn fa-spinner fa-spin"></i> Updating
                 </span>
-                    <span v-else>
+                <span v-else>
                     Next Step
                 </span>
             </a>
@@ -73,6 +73,10 @@ export default {
         listing: {
             type: Object,
             required: true
+        },
+        plans: {
+          type: Object,
+          required: true
         },
         data: {
             type: Object,
@@ -89,12 +93,12 @@ export default {
                 id: this.listing.id,
                 plan: this.listing.plan
             }),
-            plans: [],
+            planOptions: this.plans
         }
     },
 
     mounted() {
-        this.getPlans();
+        this.resetPlans(true);
     },
 
     methods: {
@@ -110,23 +114,12 @@ export default {
         },
 
         /**
-         * Get the active plans for the current category.
-         */
-        getPlans() {
-            axios.get('/listing/plan/' + this.listing.category_id)
-                .then(response => {
-                    this.plans = response.data;
-                    this.resetPlans();
-                });
-        },
-
-        /**
          * Clear selection and calculate pricings.
          */
         resetPlans(reset) {
             let self = this;
 
-            _.forEach(this.plans, function (plan) {
+            _.forEach(this.planOptions, function (plan) {
                 plan.pricePerDay = self.calculatePricePerDay(plan, plan.optionSelected);
                 plan.price = plan.options[plan.optionSelected].price;
                 plan.formatted_price = plan.options[plan.optionSelected].formatted_price;

@@ -1,4 +1,3 @@
-
 /*
  |--------------------------------------------------------------------------
  | Laravel Spark Bootstrap
@@ -17,6 +16,7 @@ require('spark-bootstrap');
 require('./components/bootstrap');
 
 import FormWizard from './components/listing/wizard/form-wizard.vue';
+import Account from './components/account/account.vue';
 import SearchListings from './components/search/listings.vue';
 import ShowListing from './components/listing/show.vue';
 import Similar from './components/listing/similar.vue';
@@ -24,6 +24,7 @@ import Similar from './components/listing/similar.vue';
 var app = new Vue({
     mixins: [require('./global')],
     components: {
+        Account,
         FormWizard,
         SearchListings,
         ShowListing,

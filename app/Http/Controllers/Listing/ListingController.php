@@ -9,6 +9,7 @@ use App\Contracts\Interactions\Listing\CreateHit;
 use App\Image;
 use App\Listing;
 use App\Http\Controllers\Controller;
+use App\Plan;
 use App\Tag;
 use Illuminate\Http\Request;
 use Laravel\Spark\Spark;
@@ -111,10 +112,26 @@ class ListingController extends Controller
             ->get()
             ->flatten();
 
+        $planning = Plan::findByCategory($listing->category->id)
+            ->with('type')
+            ->get()
+            ->groupBy('type_id');
+
+        $plans = collect($planning)->transform(function ($plan) {
+            return [
+                'title' => $plan->first()->type->title,
+                'options' => $plan,
+                'optionSelected' => 0,
+                'pricePerDay' => 0,
+                'price' => 0,
+                'selected' => false
+            ];
+        });
+
         $tags = Tag::findByCategory($listing->category->id)
             ->get()
             ->flatten();
 
-        return view('spark::listings.wizard', compact(['listing', 'addons', 'amenities', 'images', 'tags']));
+        return view('spark::listings.wizard', compact(['listing', 'addons', 'amenities', 'images', 'plans', 'tags']));
     }
 }
