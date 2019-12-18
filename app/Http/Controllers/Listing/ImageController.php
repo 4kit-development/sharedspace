@@ -45,10 +45,14 @@ class ImageController extends Controller
      */
     public function store(Request $request, Listing $listing)
     {
-        return $this->interaction(
+        $data = $this->interaction(
             $request, StoreImages::class,
             [$listing, $request->all()]
         );
+
+        $listing->searchable();
+
+        return $data;
     }
 
     /**
@@ -60,8 +64,12 @@ class ImageController extends Controller
      */
     public function update(Request $request, Listing $listing)
     {
-        return Spark::interact( UpdateImages::class,
+        $data = Spark::interact( UpdateImages::class,
             [$listing, $request->all()]
         );
+
+        $listing->searchable();
+
+        return $data;
     }
 }

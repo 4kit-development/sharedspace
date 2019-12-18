@@ -1,29 +1,25 @@
 #!/usr/bin/env bash
 
-if [ ! "production" == "$APP_ENV" ] && [ ! "prod" == "$APP_ENV" ]; then
-    # Enable xdebug
+role=${CONTAINER_ROLE:-app}
 
-    ## FPM
-    ln -sf /etc/php/7.2/mods-available/xdebug.ini /etc/php/7.2/fpm/conf.d/20-xdebug.ini
+# App
+if [ "$role" = "app" ]; then
 
-    ## CLI
-    ln -sf /etc/php/7.2/mods-available/xdebug.ini /etc/php/7.2/cli/conf.d/20-xdebug.ini
+    ln -sf /etc/supervisor/conf.d-available/app.conf /etc/supervisor/conf.d/app.conf
+
+# Queue
+elif [ "$role" = "queue" ]; then
+
+    ln -sf /etc/supervisor/conf.d-available/queue.conf /etc/supervisor/conf.d/queue.conf
+
+# Scheduler
+elif [ "$role" = "scheduler" ]; then
+
+    ln -sf /etc/supervisor/conf.d-available/scheduler.conf /etc/supervisor/conf.d/scheduler.conf
+
 else
-    # Disable xdebug
-
-    ## FPM
-    if [ -e /etc/php/7.2/fpm/conf.d/20-xdebug.ini ]; then
-        rm -f /etc/php/7.2/fpm/conf.d/20-xdebug.ini
-    fi
-
-    ## CLI
-    if [ -e /etc/php/7.2/cli/conf.d/20-xdebug.ini ]; then
-        rm -f /etc/php/7.2/cli/conf.d/20-xdebug.ini
-    fi
+    echo "Could not match the container role \"$role\""
+    exit 1
 fi
 
-# Config /etc/php/7.2/mods-available/xdebug.ini
-sed -i "s/xdebug\.remote_host\=.*/xdebug\.remote_host\=$XDEBUG_HOST/g" /etc/php/7.2/mods-available/xdebug.ini
-
-# start supervisord
-/usr/bin/supervisord
+exec supervisord -c /etc/supervisor/supervisord.conf

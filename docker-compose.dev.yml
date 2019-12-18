@@ -15,10 +15,25 @@ services:
       service: app
     environment:
       APP_ENV: ${APP_ENV}
+      CONTAINER_ROLE: app
       VIRTUAL_HOST: dev.sharedspace.co.nz
     expose:
       - 80
       - 443
+  queue:
+    extends:
+      file: docker-compose.base.yml
+      service: app
+    environment:
+      APP_ENV: ${APP_ENV}
+      CONTAINER_ROLE: queue
+  scheduler:
+    extends:
+      file: docker-compose.base.yml
+      service: app
+    environment:
+      APP_ENV: ${APP_ENV}
+      CONTAINER_ROLE: scheduler
   node:
     extends:
       file: docker-compose.base.yml

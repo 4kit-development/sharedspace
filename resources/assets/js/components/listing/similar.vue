@@ -8,7 +8,7 @@
         <div class="content min-h-full mb-8 flex justify-center">
             <div class="w-full">
                 <div class="flex flex-wrap mt-6">
-                    <div class="w-full md:w-1/4 sm:w-1/2 px-3 mb-4" v-for="listing in similar">
+                    <div class="w-full md:w-1/4 sm:w-1/2 px-4 mb-4" v-for="listing in similar">
                         <listing-card :listing="listing"></listing-card>
                     </div>
                 </div>
@@ -33,10 +33,6 @@
             }
         },
 
-        computed: {
-
-        },
-
         /**
          * The component's data.
          */
@@ -45,13 +41,5 @@
                 listing: []
             }
         },
-
-        mounted() {
-
-        },
-
-        methods: {
-
-        }
     }
 </script>

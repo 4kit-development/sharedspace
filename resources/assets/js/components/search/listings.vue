@@ -1,5 +1,5 @@
 <template>
-    <div class="container mx-auto my-12" id="results">
+    <div class="container mx-auto my-12 px-4" id="results">
         <div class="filters mb-12">
             <ul class="flex">
                 <li class="flex mr-2 items-center" @click="showMap = false">
@@ -14,8 +14,8 @@
                     <a :class="showMap ? 'text-gray-700' : 'text-gray-600'" class="text-center inline-block pl-1 text-sm" href="#">On Map</a>
                 </li>
                 <li class="flex mr-4 items-center relative cursor-pointer" @click="showPrice = !showPrice; showArea = false;">
-                    <svg class="h-4 w-4 inline-block text-grey-700 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 14"><path d="M3.433 12.399C3.07 12.769 2.564 13 2 13c-1.105 0-2-.887-2-1.998V6.998C0 5.895.888 5 2 5c.596 0 1.132.259 1.498.672.774.035 1.52.237 2.22.554.346.156.627.314.832.447l2.117-.006c.905 0 1.615.51 2.164 1.333H13c1.695 0 2.998 1.015 2.998 1.995.004.577-1.002 1.475-2.29 2.216-1.59.915-3.43 1.466-5.371 1.456-1.916.01-3.357-.331-4.387-.922a4.345 4.345 0 01-.517-.346zm.563-1.277c.103.116.299.283.618.467.814.467 2.025.753 3.723.744 1.696.01 3.309-.473 4.706-1.278a8.137 8.137 0 001.33-.94c.077-.069.064-.059.064-.059a.189.189 0 00.005-.271s.054.038-.06-.05c-.318-.248-.777-.402-1.382-.402h-1.508c.067.187.118.358.155.505a.667.667 0 01-.647.829H5.667a.667.667 0 010-1.334H10s.02-.084-.123-.34C9.514 8.349 9.1 8 8.667 8H6.333a.667.667 0 01-.396-.131c-.027-.02-.553-.331-.77-.429-.377-.17-.769-.299-1.167-.372v3.934c0 .04-.001.08-.004.12zm-1.33.225v.32H1.334V6.333h1.334v.002c.78-.666.729-.667.677-.668a.667.667 0 00-.677.668v5.012zm10-4.347a2 2 0 110-4 2 2 0 010 4zm0-1.333a.667.667 0 100-1.334.667.667 0 000 1.334zM8 4.333a2 2 0 110-4 2 2 0 010 4zM8 3a.667.667 0 100-1.333A.667.667 0 008 3z" fill-rule="evenodd"/></svg>
-                    <a class="text-center inline-block pl-1 text-grey-700 text-sm">Price Range</a>
+                    <svg class="h-4 w-4 inline-block text-gray-700 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 14"><path d="M3.433 12.399C3.07 12.769 2.564 13 2 13c-1.105 0-2-.887-2-1.998V6.998C0 5.895.888 5 2 5c.596 0 1.132.259 1.498.672.774.035 1.52.237 2.22.554.346.156.627.314.832.447l2.117-.006c.905 0 1.615.51 2.164 1.333H13c1.695 0 2.998 1.015 2.998 1.995.004.577-1.002 1.475-2.29 2.216-1.59.915-3.43 1.466-5.371 1.456-1.916.01-3.357-.331-4.387-.922a4.345 4.345 0 01-.517-.346zm.563-1.277c.103.116.299.283.618.467.814.467 2.025.753 3.723.744 1.696.01 3.309-.473 4.706-1.278a8.137 8.137 0 001.33-.94c.077-.069.064-.059.064-.059a.189.189 0 00.005-.271s.054.038-.06-.05c-.318-.248-.777-.402-1.382-.402h-1.508c.067.187.118.358.155.505a.667.667 0 01-.647.829H5.667a.667.667 0 010-1.334H10s.02-.084-.123-.34C9.514 8.349 9.1 8 8.667 8H6.333a.667.667 0 01-.396-.131c-.027-.02-.553-.331-.77-.429-.377-.17-.769-.299-1.167-.372v3.934c0 .04-.001.08-.004.12zm-1.33.225v.32H1.334V6.333h1.334v.002c.78-.666.729-.667.677-.668a.667.667 0 00-.677.668v5.012zm10-4.347a2 2 0 110-4 2 2 0 010 4zm0-1.333a.667.667 0 100-1.334.667.667 0 000 1.334zM8 4.333a2 2 0 110-4 2 2 0 010 4zM8 3a.667.667 0 100-1.333A.667.667 0 008 3z" fill-rule="evenodd"/></svg>
+                    <a class="text-center inline-block pl-1 text-gray-700 text-sm">Price Range</a>
                     <div class="pointer-events-none inset-y-0 right-0 flex items-center px-2 text-gray-700">
                         <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
                     </div>
@@ -24,8 +24,8 @@
                     </div>
                 </li>
                 <li class="flex mr-4 items-center relative cursor-pointer" @click="showArea = !showArea; showPrice = false;">
-                    <svg class="h-4 w-4 inline-block text-grey-700 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13"><path d="M6.697 11.35h3.99a.5.5 0 00.5-.5v-8.1a.5.5 0 00-.5-.5h-7.98a.5.5 0 00-.5.5V6.8h3.99a.5.5 0 01.5.5v4.05zM1.424.95H11.97a.5.5 0 01.5.5v10.7a.5.5 0 01-.5.5H1.424a.5.5 0 01-.5-.5V1.45a.5.5 0 01.5-.5zM2.707 8.1a.5.5 0 00-.5.5v2.25a.5.5 0 00.5.5h2.207a.5.5 0 00.5-.5V8.6a.5.5 0 00-.5-.5H2.707z" fill="#4A4A4A" fill-rule="evenodd"/></svg>
-                    <a class="text-center inline-block pl-1 text-grey-700 text-sm">Floor Area</a>
+                    <svg class="h-4 w-4 inline-block text-gray-700 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13"><path d="M6.697 11.35h3.99a.5.5 0 00.5-.5v-8.1a.5.5 0 00-.5-.5h-7.98a.5.5 0 00-.5.5V6.8h3.99a.5.5 0 01.5.5v4.05zM1.424.95H11.97a.5.5 0 01.5.5v10.7a.5.5 0 01-.5.5H1.424a.5.5 0 01-.5-.5V1.45a.5.5 0 01.5-.5zM2.707 8.1a.5.5 0 00-.5.5v2.25a.5.5 0 00.5.5h2.207a.5.5 0 00.5-.5V8.6a.5.5 0 00-.5-.5H2.707z" fill="#4A4A4A" fill-rule="evenodd"/></svg>
+                    <a class="text-center inline-block pl-1 text-gray-700 text-sm">Floor Area</a>
                     <div class="pointer-events-none inset-y-0 right-0 flex items-center px-2 text-gray-700">
                         <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
                     </div>
@@ -34,13 +34,14 @@
                     </div>
                 </li>
                 <li class="flex mr-4 items-center">
-                    <svg class="mr-1 h-4 w-4 inline-block pl-1 text-grey-700 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14"><path d="M7.748 7.663h1.839l-.92-1.838-.919 1.838zm2.505 1.335l-3.172-.003-.485.97a.667.667 0 11-1.192-.596L8.07 4.035a.667.667 0 011.193 0L11.93 9.37a.667.667 0 01-1.193.596l-.484-.967zm-6.92-7.762A2.66 2.66 0 015.337.333H6a.667.667 0 010 1.334h-.664C4.597 1.667 4 2.262 4 3.002v7.996c0 .739.596 1.335 1.335 1.335H6a.667.667 0 010 1.334h-.664a2.66 2.66 0 01-2.002-.903 2.66 2.66 0 01-2.002.903H.668a.667.667 0 010-1.334h.664c.74 0 1.335-.596 1.335-1.335V3.002c0-.74-.596-1.335-1.335-1.335H.668a.667.667 0 010-1.334h.664a2.66 2.66 0 012.002.903z" fill-rule="nonzero"/></svg>
+                    <svg class="mr-1 h-4 w-4 inline-block pl-1 text-gray-700 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14"><path d="M7.748 7.663h1.839l-.92-1.838-.919 1.838zm2.505 1.335l-3.172-.003-.485.97a.667.667 0 11-1.192-.596L8.07 4.035a.667.667 0 011.193 0L11.93 9.37a.667.667 0 01-1.193.596l-.484-.967zm-6.92-7.762A2.66 2.66 0 015.337.333H6a.667.667 0 010 1.334h-.664C4.597 1.667 4 2.262 4 3.002v7.996c0 .739.596 1.335 1.335 1.335H6a.667.667 0 010 1.334h-.664a2.66 2.66 0 01-2.002-.903 2.66 2.66 0 01-2.002.903H.668a.667.667 0 010-1.334h.664c.74 0 1.335-.596 1.335-1.335V3.002c0-.74-.596-1.335-1.335-1.335H.668a.667.667 0 010-1.334h.664a2.66 2.66 0 012.002.903z" fill-rule="nonzero"/></svg>
                     <div id="searchbox"></div>
                 </li>
             </ul>
         </div>
         <div class="pb-12">
-            <div id="stats"></div><div id="current-refinements"></div>
+            <div id="stats"></div>
+            <div id="current-refinements"></div>
         </div>
         <div class="flex">
             <div id="sidebar" v-show="showMap" class="fixed inset-0 pt-4 h-full bg-white z-90 w-1/2 border-b -mb-16 lg:-mb-0 lg:static lg:h-auto ">
@@ -275,13 +276,27 @@
                 area: {},
                 cost: {},
                 showMap: false,
-                // searchClient: algoliasearch(
-                //     this.algoliaId,
-                //     this.algoliaKey
-                // ),
                 showArea: false,
                 showPrice: false,
             };
+        },
+        mounted() {
+            let scriptJSScript = document.createElement('script')
+            scriptJSScript.setAttribute('src', 'https://cdn.jsdelivr.net/npm/scriptjs@2.5.9/dist/script.min.js')
+            document.head.appendChild(scriptJSScript)
+
+            let algoliaScript = document.createElement('script')
+            algoliaScript.setAttribute('src', 'https://cdn.jsdelivr.net/npm/algoliasearch@3.32.0')
+            document.head.appendChild(algoliaScript);
+
+            let instantSearchScript = document.createElement('script')
+            instantSearchScript.setAttribute('src', 'https://cdn.jsdelivr.net/npm/instantsearch.js@4.0.0/dist/instantsearch.production.min.js')
+            document.head.appendChild(instantSearchScript)
+
+            let searchScript = document.createElement('script')
+            searchScript.setAttribute('src', '/js/search.js')
+            searchScript.setAttribute('type', 'module')
+            document.head.appendChild(searchScript)
         },
     //
     //     computed: {

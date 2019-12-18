@@ -34,6 +34,7 @@ COPY xdebug.ini /etc/php/7.2/mods-available/xdebug.ini
 EXPOSE 80
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY config/supervisor/conf.d/*.conf /etc/supervisor/conf.d-available/
 COPY start-container /usr/local/bin/start-container
 RUN chmod +x /usr/local/bin/start-container
 

@@ -20,7 +20,7 @@ class Listing extends Model
 
     protected $table = 'listings';
 
-    protected $appends = ['days_remaining', 'formatted_area', 'formatted_capacity', 'formatted_cost', 'formatted_expired_at', 'formatted_listed_at', 'page_views', 'progress'];
+    protected $appends = ['days_remaining', 'formatted_area', 'formatted_capacity', 'formatted_cost', 'formatted_expired_at', 'formatted_listed_at', 'formatted_tags', 'page_views', 'progress'];
 
     /**
      * Get all of the addons that belong to the listing.
@@ -71,7 +71,7 @@ class Listing extends Model
      */
     public function hits()
     {
-        return $this->hasMany('App\Hit', 'listing_id');
+        return $this->hasMany('App\Hit');
     }
 
     /**
@@ -79,7 +79,7 @@ class Listing extends Model
      */
     public function images()
     {
-        return $this->hasMany('App\Image', 'listing_id');
+        return $this->hasMany('App\Image');
     }
 
     /**
@@ -169,8 +169,7 @@ class Listing extends Model
         return $query
             ->with([
                 'category.metric',
-                'images',
-                'tags'])
+                'images'])
             ->where('category_id', $listing->category_id)
             ->where('district_id', $listing->district_id)
             ->where('id', '<>', $listing->id)
@@ -191,7 +190,7 @@ class Listing extends Model
      */
     public function toSearchableArray()
     {
-        $results = $this->with(['amenities', 'category.metric', 'coupon', 'district', 'images', 'plan.type', 'region', 'section', 'suburb', 'tags', 'user'])
+        $results = $this->with(['amenities:title', 'category:id,metric_id,title,name', 'category.metric', 'district:id,title', 'images:id,listing_id,url', 'plan.type', 'region:id,title', 'section:id,title', 'suburb:id,title', 'user:id,name'])
             ->where([['id', $this->id], ['status', 'enabled']])
             ->first();
 
@@ -200,7 +199,16 @@ class Listing extends Model
             'lng' => $this->geocode_lng
         ];
 
+        $results['primary_image'] = $results->images->isEmpty() ? config('url').'/img/no-image.jpg' : $results->images->first()->url;
+
         unset($results['full_description']);
+        unset($results['category']['icon']);
+        unset($results['amenities']['icon']);
+        unset($results['coupon_id']);
+        unset($results['images']);
+        unset($results['video']);
+        unset($results['expiry_notification']);
+        unset($results['current_step']);
 
         return collect($results)->toArray();
     }
@@ -230,9 +238,9 @@ class Listing extends Model
     protected function getFormattedCapacityAttribute()
     {
         if ($this->min_capacity) {
-            return $this->min_capacity . ' - ' . $this->max_capacity  . ' ' . $this->category->metric->capacity_specification;
+            return $this->min_capacity . ' - ' . $this->max_capacity;
         }
-        return $this->max_capacity . ' ' . $this->category->metric->capacity_specification;
+        return $this->max_capacity;
     }
 
     /**
@@ -245,9 +253,9 @@ class Listing extends Model
         }
 
         if ($this->min_cost) {
-            return '$' . $this->min_cost . ' - ' . $this->max_cost  . ' ' . $this->category->metric->cost_specification;
+            return '$' . $this->min_cost . ' - ' . $this->max_cost;
         }
-    	return '$' . $this->max_cost . ' ' . $this->category->metric->cost_specification;
+    	return '$' . $this->max_cost;
     }
 
     /**
@@ -264,6 +272,14 @@ class Listing extends Model
     protected function getFormattedListedAtAttribute()
     {
         return Carbon::parse($this->listed_at)->format('d M Y');
+    }
+
+    /**
+     * Get remaining percentage of the days left till listing expires
+     */
+    protected function getFormattedTagsAttribute()
+    {
+        return $this->tags()->pluck('title')->implode(' / ');
     }
 
     /**

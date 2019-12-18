@@ -26,3 +26,5 @@ require('./listing/wizard/form-preview.vue');
 require('./listing/wizard/form-media.vue');
 
 require('./listing/similar.vue');
+
+require('./search/advanced.vue');

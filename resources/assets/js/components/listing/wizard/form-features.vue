@@ -125,7 +125,7 @@
                         Amenities and services
                     </label>
                     <div class="flex flex-wrap md:items-center mb-6">
-                        <label class="md:w-1/4 w-1/2 px-3 mb-2 block text-gray-800 pb-2 relative form-checkbox pl-8" v-for="(amenity, index) in amenities">
+                        <label class="md:w-1/4 w-1/2 px-3 mb-2 block text-gray-700 pb-2 relative form-checkbox pl-8" v-for="(amenity, index) in amenities">
                             <span v-html="amenity.icon"></span>
                             <span class="text-sm">
                                 {{ amenity.title }}

@@ -14,7 +14,6 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(App\Listing::class, function (Faker $faker) {
-    $category = factory(App\Category::class)->create();
     $suburb = factory(App\Suburb::class)->create();
     $district = factory(\App\District::class)->create();
 
@@ -22,8 +21,8 @@ $factory->define(App\Listing::class, function (Faker $faker) {
         'user_id' => function () {
            return factory(App\User::class)->create()->id;
         },
-        'section_id' => $category->section_id,
-        'category_id' => $category->id,
+        'section_id' => 1,
+        'category_id' => 1,
         'region_id' => $district->region_id,
         'district_id' => $district->id,
         'suburb_id' => $suburb->id,

@@ -5,7 +5,7 @@
 }
 
 .btn-gray-800 {
-    @apply bg-transparent text-gray-800 border-gray-800;
+    @apply bg-transparent text-gray-700 border-gray-800;
 }
 
 .btn-gray-800:hover {
@@ -21,9 +21,9 @@
 }
 
 .btn-no-border {
-    @apply bg-transparent text-gray-800 border-0;
+    @apply bg-transparent text-gray-700 border-0;
 }
 
-.btn-yellow-600 {
-    @apply bg-yellow-600 text-gray-800 border-yellow-600;
+.btn-yellow-500 {
+    @apply bg-yellow-500 text-gray-700 border-yellow-500;
 }

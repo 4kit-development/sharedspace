@@ -21,10 +21,7 @@ class Image extends Model implements Sortable
         'sort_when_creating' => true,
     ];
 
-    public function listing()
-    {
-        return $this->belongsTo(Listing::class);
-    }
+    protected $fillable = ['url', 'path', 'extension', 'order', 'created_at', 'updated_at'];
 
     /**
      * return all the images for a listing

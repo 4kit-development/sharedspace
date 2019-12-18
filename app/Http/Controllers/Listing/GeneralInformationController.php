@@ -25,12 +25,11 @@ class GeneralInformationController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Listing  $listing
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Listing $listing)
     {
-        //
         $listing = $this->interaction($request, UpdateGeneralInformation::class, [
             $listing, $request->all()
         ]);

@@ -2,9 +2,6 @@
 
 const encodedCategories = {
     Cameras: 'Cameras & Camcorders',
-    Cars: 'Car Electronics & GPS',
-    Phones: 'Cell Phones',
-    TV: 'TV & Home Theater',
 };
 
 const decodedCategories = Object.keys(encodedCategories).reduce((acc, key) => {

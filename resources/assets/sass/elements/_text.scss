@@ -22,7 +22,7 @@ h2 {
 // Font Colors
 // -------------------------------------------------------------------------- */
 a {
-  @apply text-gray-800 no-underline;
+  @apply text-gray-700 no-underline;
 }
 
 
@@ -37,7 +37,7 @@ a {
     display: inline-block;
     position: relative;
     width: 100%;
-    @apply text-gray-800;
+    @apply text-gray-700;
 }
 .fancy span:before,
 .fancy span:after {

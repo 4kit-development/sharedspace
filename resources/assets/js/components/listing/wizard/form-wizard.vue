@@ -7,7 +7,7 @@
             <ul class="list-reset flex mb-8 border-b overflow-scroll">
                 <template v-for="(step, index) in steps">
                     <li :class="[index === currentStepNumber - 1 ? 'border-b border-black font-semibold' : 'font-light']">
-                        <a class="whitespace-no-wrap uppercase text-xs inline-block py-2 px-4 text-gray-800 hover:text-black" :class="[index === 0 ? 'pl-0 ' : '']" href="#">{{step.name}}</a>
+                        <a class="whitespace-no-wrap uppercase text-xs inline-block py-2 px-4 text-gray-700 hover:text-black" :class="[index === 0 ? 'pl-0 ' : '']" href="#">{{step.name}}</a>
                     </li>
                 </template>
             </ul>

@@ -18,6 +18,10 @@ Route::group([
 });
 
 Route::get('/listing/categories', 'CategoryController@index');
+Route::get('/listing/regions', 'RegionController@index');
+
+Route::get('/listing/districts/{id}', 'DistrictController@findByRegion');
+Route::get('/listing/suburbs/{id}', 'SuburbController@findByDistrict');
 
 //Route::post('/listing/{id}/activate', 'Listing\ActivateController@store');
 //Route::post('/listing/store', 'Listing\ListingController@store');

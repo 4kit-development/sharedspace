@@ -19,6 +19,8 @@ class CreateCategoriesTable extends Migration
             $table->integer('metric_id')->unsigned();
             $table->string('title');
             $table->string('name');
+            $table->text('icon');
+            $table->string('nickname');
             $table->boolean('status');
             $table->timestamps();
 

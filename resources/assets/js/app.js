@@ -20,11 +20,13 @@ import Account from './components/account/account.vue';
 import SearchListings from './components/search/listings.vue';
 import ShowListing from './components/listing/show.vue';
 import Similar from './components/listing/similar.vue';
+import Advanced from './components/search/advanced.vue';
 
 var app = new Vue({
     mixins: [require('./global')],
     components: {
         Account,
+        Advanced,
         FormWizard,
         SearchListings,
         ShowListing,

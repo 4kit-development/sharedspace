@@ -2,7 +2,9 @@
     <header :class="[showTransition ? 'fadeIn' : 'fadeOut', isOpen ? 'bg-white' : spark.root ? 'fixed top-0 w-full z-20' : '' ]" class="sm:flex sm:justify-between sm:items-center px-4 py-2">
         <div class="flex items-center justify-between">
             <div>
-                <img class="h-12" src="/img/sharedspace-logo.svg" alt="Sharedspace logo"/>
+                <a href="/">
+                    <img class="h-12" src="/img/sharedspace-logo.svg" alt="Sharedspace logo"/>
+                </a>
             </div>
             <div class="sm:hidden flex items-center">
                 <button @click="isOpen = !isOpen" class="focus:outline-none">
